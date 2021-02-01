@@ -16,7 +16,10 @@ public class Sort {
 
     public static void main(String[] args) {
         Utils.print(DATA);
-        selectionSort(DATA);
+        shellSort(DATA);
+        Utils.print(DATA);
+
+        bubblingSort(DATA);
         Utils.print(DATA);
     }
 
@@ -53,6 +56,43 @@ public class Sort {
                     }
                 }
                 Utils.swap(array, i, minIndex);
+            }
+        }
+    }
+
+    /**
+     * 插入排序
+     */
+    public static void insertSort(int[] array) {
+        if (array != null) {
+            for (int i = 1; i < array.length; i++) {
+                int tmp = array[i];
+                int j = i;
+                while (j > 0 && tmp < array[j - 1]) {
+                    array[j] = array[j - 1];
+                    j--;
+                }
+                if (j != i) {
+                    array[j] = tmp;
+                }
+            }
+        }
+    }
+
+    /**
+     * 希尔排序
+     * @param array
+     */
+    public static void shellSort(int[] array) {
+        for (int gap = array.length / 2; gap >= 1; gap = gap / 2) {
+            for (int i = gap; i < array.length; i++) {
+                int tmp = array[i];
+                int j = i - gap;
+                while (j >= 0 && tmp < array[j]) {
+                    array[j + gap] = array[j];
+                    j -= gap;
+                }
+                array[j + gap] = tmp;
             }
         }
     }
