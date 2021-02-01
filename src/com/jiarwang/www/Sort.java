@@ -16,11 +16,15 @@ public class Sort {
 
     public static void main(String[] args) {
         Utils.print(DATA);
-        bubblingSort(DATA);
+        selectionSort(DATA);
         Utils.print(DATA);
     }
 
-
+    /**
+     * 冒泡排序
+     *
+     * @param array
+     */
     public static void bubblingSort(int[] array) {
         if (array != null) {
             for (int j = 0; j < array.length; j++) {
@@ -32,6 +36,23 @@ public class Sort {
                     }
                 }
                 if (flag) return;
+            }
+        }
+    }
+
+    /**
+     * 选择排序
+     */
+    public static void selectionSort(int[] array) {
+        if (array != null) {
+            for (int i = 0; i < array.length - 1; i++) {
+                int minIndex = i;
+                for (int j = i + 1; j < array.length; j++) {
+                    if (array[minIndex] > array[j]) {
+                        minIndex = j;
+                    }
+                }
+                Utils.swap(array, i, minIndex);
             }
         }
     }
