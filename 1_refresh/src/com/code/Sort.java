@@ -48,7 +48,7 @@ public class Sort {
 
         newData();
         Utils.print(DATA);
-        mergeSort(DATA);
+        quickSort(DATA);
         Utils.print(Arrays.copyOfRange(DATA, 0, 20));
 
     }
@@ -157,6 +157,40 @@ public class Sort {
                 j++;
             }
         }
+    }
+
+    /**
+     * 快速排序
+     */
+    public static void quickSort(int[] array){
+        if (array == null) return;
+        quickSort(array, 0, array.length - 1);
+    }
+
+    private static void quickSort(int[] array, int start, int end){
+        if (start < end){
+            int i = partition(array, start, end);
+            quickSort(array, start, i);
+            quickSort(array, i + 1, end);
+        }
+    }
+
+    private static int partition(int[] array, int start, int end){
+        if (start >= end) return start;
+        int pivot = start;
+        int i = start, j = end;
+        while (i < j){
+            while (j > i && array[j] >= array[pivot]){
+                j--;
+            }
+            while (j > i && array[i] <= array[pivot]){
+                i ++;
+            }
+            Utils.swap(array, i, j);
+        }
+        Utils.swap(array, i, start);
+
+        return i;
     }
 
 
