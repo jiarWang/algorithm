@@ -2,10 +2,11 @@ package com.jiarwang.www;
 
 import com.jiarwang.www.util.Utils;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Sort {
-    private final static int SIZE = 15;
+    private final static int SIZE = 60000;
     private static int[] DATA = new int[SIZE];
 
     static {
@@ -14,11 +15,16 @@ public class Sort {
         }
     }
 
+    public static void refresh(){
+        for (int i = 0; i < SIZE; i++) {
+            DATA[i] = new Random().nextInt(SIZE * 10);
+        }
+    }
+
     public static void main(String[] args) {
-        Utils.print(DATA);
         shellSort(DATA);
         Utils.print(DATA);
-
+        refresh();
         bubblingSort(DATA);
         Utils.print(DATA);
     }
@@ -29,6 +35,7 @@ public class Sort {
      * @param array
      */
     public static void bubblingSort(int[] array) {
+       long start = System.currentTimeMillis();
         if (array != null) {
             for (int j = 0; j < array.length; j++) {
                 boolean flag = true;
@@ -38,9 +45,11 @@ public class Sort {
                         Utils.swap(array, i, i + 1);
                     }
                 }
-                if (flag) return;
+                if (flag) break;
             }
         }
+        System.out.println();
+        System.out.println("bubbling : " +(System.currentTimeMillis() - start));
     }
 
     /**
@@ -80,10 +89,11 @@ public class Sort {
     }
 
     /**
-     * 希尔排序
+     * 希尔排序(有步长的掺入排序)
      * @param array
      */
     public static void shellSort(int[] array) {
+        long start = System.currentTimeMillis();
         for (int gap = array.length / 2; gap >= 1; gap = gap / 2) {
             for (int i = gap; i < array.length; i++) {
                 int tmp = array[i];
@@ -95,5 +105,7 @@ public class Sort {
                 array[j + gap] = tmp;
             }
         }
+        System.out.println();
+        System.out.println("shell : " +(System.currentTimeMillis() - start));
     }
 }
