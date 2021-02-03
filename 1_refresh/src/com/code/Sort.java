@@ -17,7 +17,7 @@ import java.util.Random;
  */
 public class Sort {
 
-    public static final int SIZE = 20;
+    public static final int SIZE = 2000;
     public static final int[] DATA = new int[SIZE];
 
     public static int[] newData() {
@@ -49,7 +49,8 @@ public class Sort {
         newData();
         Utils.print(DATA);
         quickSort(DATA);
-        Utils.print(Arrays.copyOfRange(DATA, 0, 20));
+        Utils.print(DATA);
+        check(DATA);
 
     }
 
@@ -192,7 +193,6 @@ public class Sort {
 
         return i;
     }
-
 
     public static void check(int[] array) {
         System.out.println("---check---");
