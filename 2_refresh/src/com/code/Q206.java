@@ -2,6 +2,7 @@ package com.code;
 
 import com.data.Data;
 import com.struct.ListNode;
+import com.util.ListUtils;
 
 /**
  * 反转链表
@@ -10,21 +11,11 @@ public class Q206 {
 
     public static void main(String[] args) {
         ListNode list = Data.generateList();
-        printList(list);
+        ListUtils.printList(list);
         list = reverseList(list);
-        printList(list);
+        ListUtils.printList(list);
     }
 
-    private static void printList(ListNode head) {
-        if (head == null) return;
-        StringBuilder sb = new StringBuilder();
-        ListNode cursor = head;
-        while (cursor != null) {
-            sb.append(String.format("%d->", cursor.value));
-            cursor = cursor.next;
-        }
-        System.out.println("\n" + sb);
-    }
 
     private static ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) return head;
