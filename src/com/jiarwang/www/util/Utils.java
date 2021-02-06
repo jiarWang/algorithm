@@ -1,5 +1,7 @@
 package com.jiarwang.www.util;
 
+import java.util.HashMap;
+
 public class Utils {
 
     public static void swap(int[] array, int source, int target){
@@ -16,5 +18,9 @@ public class Utils {
         if (sb.length() > 0){
             System.out.println(sb.substring(1));
         }
+    }
+
+    public static void main(String[] args) {
+        HashMap<Integer, String> hashMap = new HashMap<>();
     }
 }

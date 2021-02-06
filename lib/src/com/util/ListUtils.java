@@ -13,4 +13,14 @@ public class ListUtils {
         }
         System.out.println("\n" + sb);
     }
+
+    public static final ListNode generateList(int size) {
+        ListNode head = new ListNode(1);
+        ListNode current = head;
+        for (int i = 0; i < size - 1; i++) {
+            current.next = new ListNode(i + 2);
+            current = current.next;
+        }
+        return head;
+    }
 }
