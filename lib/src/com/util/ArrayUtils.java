@@ -3,6 +3,16 @@ package com.util;
 import java.util.Random;
 
 public class ArrayUtils {
+
+    private int[] a;
+    public ArrayUtils() {
+        a = new int[12];
+    }
+
+    public static void main(String[] args) {
+        new ArrayUtils();
+    }
+
     public static void swap(int[] array, int source, int target){
         int tmp = array[source];
         array[source] = array[target];

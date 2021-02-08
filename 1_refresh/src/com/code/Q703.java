@@ -25,15 +25,15 @@ public class Q703 {
         ArrayUtils.print(ints);
     }
 
-    public static int kMin(int[] array, int k) {
-        int[] maxGroup = Arrays.copyOfRange(array, 0, k);
-        if (array.length == k){
+    public static int kMin(int[] nums, int k) {
+        int[] maxGroup = Arrays.copyOfRange(nums, 0, k);
+        if (nums.length == k){
             minHeap(maxGroup);
 
         }else {
             int index = k;
-            while (index < array.length && array[index] > maxGroup[0]){
-                maxGroup[0] = array[index];
+            while (index < nums.length && nums[index] > maxGroup[0]){
+                maxGroup[0] = nums[index];
                 minHeap(maxGroup);
                 index ++;
             }
