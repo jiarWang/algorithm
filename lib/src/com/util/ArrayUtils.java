@@ -36,4 +36,16 @@ public class ArrayUtils {
         }
         return data;
     }
+    public static void check(int[] array) {
+        System.out.println("---check---");
+        if (array == null) return;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i - 1] > array[i]) {
+                throw new RuntimeException(
+                        String.format("排序结果有误 array[%d] = %d > array[%d] = %d", i - 1, array[i - 1], i, array[i])
+                );
+            }
+        }
+        return;
+    }
 }
