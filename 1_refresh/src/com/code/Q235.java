@@ -11,11 +11,11 @@ public class Q235 {
     }
 
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q){
-        if (root == null || root.value == p.value || root.value == q.value) return root;
-        if (p.value < root.value && q.value < root.value){
+        if (root == null || root.val == p.val || root.val == q.val) return root;
+        if (p.val < root.val && q.val < root.val){
             //找左边
             return lowestCommonAncestor(root.left, p, q);
-        }else if (p.value > root.value && q.value > root.value){
+        }else if (p.val > root.val && q.val > root.val){
             //找右边
             return lowestCommonAncestor(root.right, p, q);
         }else {

@@ -31,7 +31,7 @@ public class Q98 {
     public static boolean isValidBST(TreeNode root) {
         if (root == null) return true;
         if (!isValidBST(root.left)) return false;
-        if (pre != null && pre.value >= root.value) return false;
+        if (pre != null && pre.val >= root.val) return false;
         pre = root;
         return isValidBST(root.right);
     }
@@ -45,8 +45,8 @@ public class Q98 {
      */
     public static boolean isValidBST(TreeNode root, int minValue, int maxValue) {
         if (root == null) return true;
-        if (root.value <= minValue || root.value >= maxValue) return false;
-        return isValidBST(root.left, minValue, root.value) && isValidBST(root.right, root.value, maxValue);
+        if (root.val <= minValue || root.val >= maxValue) return false;
+        return isValidBST(root.left, minValue, root.val) && isValidBST(root.right, root.val, maxValue);
     }
 
 
