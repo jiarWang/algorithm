@@ -36,7 +36,7 @@ public class TreeUtils {
 
     public static void prePrint(TreeNode node){
         if (node == null) return;
-        System.out.print(node.value + "-->");
+        System.out.print(node.val + "-->");
         prePrint(node.left);
         prePrint(node.right);
     }
@@ -44,7 +44,7 @@ public class TreeUtils {
     public static void centerPrint(TreeNode node){
         if (node == null) return;
         centerPrint(node.left);
-        System.out.print(node.value + "-->");
+        System.out.print(node.val + "-->");
         centerPrint(node.right);
     }
 
@@ -52,6 +52,6 @@ public class TreeUtils {
         if (node == null) return;
         endPrint(node.left);
         endPrint(node.right);
-        System.out.print(node.value + "-->");
+        System.out.print(node.val + "-->");
     }
 }
