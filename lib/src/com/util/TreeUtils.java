@@ -17,6 +17,8 @@ public class TreeUtils {
         endPrint(tree);
         System.out.println("");
         expendTree(tree);
+
+        levelTree(tree);
     }
 
     public static TreeNode newTree(int size) {
@@ -61,6 +63,7 @@ public class TreeUtils {
 
     /**
      * 广度优先
+     *
      * @param root
      */
     public static void expendTree(TreeNode root) {
@@ -68,10 +71,27 @@ public class TreeUtils {
         queue.offer(root);
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            if (node == null) continue;
             System.out.print(node.val + ",");
-            queue.offer(node.left);
-            queue.offer(node.right);
+            //可以创建一个set存储已访问的埋点，将排除已访问的节点，这样就可以实现图的遍历了
+            if (node.left != null) queue.offer(node.left);
+            if (node.right != null) queue.offer(node.right);
+        }
+    }
+
+    public static void levelTree(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int level = 0;
+        while (!queue.isEmpty()) {
+            level ++;
+            System.out.println(String.format("\n当前层：%d", level));
+            int size = queue.size();//每次将当前层遍历完毕
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                System.out.print(node.val + ",");
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+            }
         }
     }
 }
