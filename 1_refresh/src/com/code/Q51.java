@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * N皇后问题
+ * 回溯：深度优先
  */
 public class Q51 {
 
@@ -22,6 +23,7 @@ public class Q51 {
             }
         }
     }
+
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> result = new ArrayList<>();
         char[][] item = newArea(n);
@@ -30,48 +32,49 @@ public class Q51 {
     }
 
 
-    private void solveNQueens(List<List<String>> result, char[][] area, int row){
-        if (row == area.length){
+    private void solveNQueens(List<List<String>> result, char[][] area, int row) {
+        if (row == area.length) {
             result.add(array2List(area));
             return;
         }
+        //第row行内，可能有area.length的col选择
         for (int n = 0; n < area.length; n++) {
             if (!isValid(area, row, n)) continue;
             area[row][n] = 'Q';
-            solveNQueens(result,area, row + 1);
+            solveNQueens(result, area, row + 1);
             area[row][n] = '.';
         }
     }
 
-    List<String> array2List(char[][] area){
+    private List<String> array2List(char[][] area) {
         List<String> res = new ArrayList<>();
-        for (char[] i : area){
+        for (char[] i : area) {
             res.add(String.valueOf(i));
         }
         return res;
     }
 
-    private boolean isValid(char[][] area, int row, int col){
+    private boolean isValid(char[][] area, int row, int col) {
         //同列
         for (int i = 0; i < row; i++) {
             if (area[i][col] == 'Q') return false;
         }
         //右上
-        for (int i = row - 1, j = col + 1; i >= 0 && j < area.length; i --, j ++){
+        for (int i = row - 1, j = col + 1; i >= 0 && j < area.length; i--, j++) {
             if (area[i][j] == 'Q') return false;
         }
         //左上
-        for (int i = row --, j = col --; i >=0 && j >=0; i --, j --){
+        for (int i = row--, j = col--; i >= 0 && j >= 0; i--, j--) {
             if (area[i][j] == 'Q') return false;
         }
         return true;
     }
 
-    private char[][] newArea(int n){
-        char[][] row = new char[n][n];
-        for (char[] i : row){
-            Arrays.fill(i,'.');
+    private char[][] newArea(int n) {
+        char[][] area = new char[n][n];
+        for (char[] i : area) {
+            Arrays.fill(i, '.');
         }
-        return row;
+        return area;
     }
 }
