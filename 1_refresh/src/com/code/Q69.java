@@ -47,5 +47,24 @@ public class Q69 {
         return ans;
     }
 
+    //算法改进
+    public static int mySqrt_(int x) {
+        if(x == 0 || x == 1) return x;
+        int l = 0, r = x, ans = -1;
+        while (l <= r) {
+            int mid = (l + r) / 2;
+            if (mid == x/mid) {
+                ans = mid;
+                break;
+            } else if (mid < x/mid) {
+                ans = mid;
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return ans;
+    }
+
 
 }
