@@ -76,7 +76,7 @@ public class Q79 {
             if (x < 0 || y < 0 || x >= row || y >= col || n >= len || board[x][y] != chars[n]) return false;
             if (n == len - 1) return true;
             char tmp = board[x][y];
-            board[x][y] = 0;
+            board[x][y] = 0;//将当前char置空，避免循环
             boolean result = search(board, x - 1, y, n + 1)
                     || search(board, x + 1, y, n + 1)
                     || search(board, x, y - 1, n + 1)
