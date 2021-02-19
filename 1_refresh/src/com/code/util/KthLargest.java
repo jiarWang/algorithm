@@ -1,8 +1,4 @@
-package com.code;
-
-import com.util.ArrayUtils;
-
-import java.util.Arrays;
+package com.code.util;
 
 class KthLargest {
 
