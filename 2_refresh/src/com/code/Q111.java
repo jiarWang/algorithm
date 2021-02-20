@@ -19,13 +19,18 @@ public class Q111 {
 
     }
 
+
     public static class DFS{
         public static int minDepth(TreeNode node){
             if (node == null) return 0;
-            if (node.left == null && node.right == null) return 1;
-            int left = minDepth(node.left);
-            int right = minDepth(node.right);
-            return 1 + Math.min(left, right);
+            if (node.left == node.right && node.left == null) return 1;
+            if (node.left == null){
+                return 1 + minDepth(node.right);
+            }else if (node.right == null){
+                return 1 + minDepth(node.left);
+            }else {
+                return 1 + Math.min(minDepth(node.left), minDepth(node.right));
+            }
         }
     }
 }
