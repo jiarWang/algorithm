@@ -13,6 +13,7 @@ import java.util.Random;
  * 4、希尔排序
  * 5、快速排序
  * 6、归并排序
+ * 7、堆排序
  */
 public class Sort {
 
@@ -27,7 +28,7 @@ public class Sort {
 
     public static void main(String[] args) {
         int[] ints = newData(30);
-        quickSort(ints);
+        mergeSort(ints);
         ArrayUtils.print(ints);
         check(ints);
     }
@@ -121,7 +122,42 @@ public class Sort {
      * 归并排序
      */
     public static void mergeSort(int[] array) {
+        mergeSort(array, 0, array.length);
+    }
 
+    private static void mergeSort(int[] array, int left, int right) {
+        if (left >= right - 1) return;
+        int middle = left + (right - left) / 2;
+        mergeSort(array, left, middle);
+        mergeSort(array, middle, right);
+        merge(array, left, middle, right);
+    }
+
+    private static void merge(int[] array, int left, int middle, int right) {
+        int[] leftArray = Arrays.copyOfRange(array, left, middle);
+        int[] rightArray = Arrays.copyOfRange(array, middle, right);
+        int l = 0, r = 0, index = left;
+        while (l < leftArray.length && r < rightArray.length) {
+            if (leftArray[l] < rightArray[r]) {
+                array[index] = leftArray[l];
+                ++index;
+                ++l;
+            } else {
+                array[index] = rightArray[r];
+                ++index;
+                ++r;
+            }
+        }
+        while (l < leftArray.length) {
+            array[index] = leftArray[l];
+            ++index;
+            ++l;
+        }
+        while (r < rightArray.length) {
+            array[index] = rightArray[r];
+            ++index;
+            ++r;
+        }
     }
 
 
