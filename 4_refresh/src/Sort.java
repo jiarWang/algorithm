@@ -26,8 +26,8 @@ public class Sort {
     }
 
     public static void main(String[] args) {
-        int[] ints = newData(3000);
-        insertSort(ints);
+        int[] ints = newData(30);
+        quickSort(ints);
         ArrayUtils.print(ints);
         check(ints);
     }
@@ -81,14 +81,40 @@ public class Sort {
      * @param array
      */
     public static void shellSort(int[] array) {
-
+        for (int gap = array.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < array.length; i++) {
+                int j = i - gap;
+                while (j >= 0 && array[j] > array[j + gap]) {
+                    ArrayUtils.swap(array, j, j + gap);
+                    j -= gap;
+                }
+            }
+        }
     }
 
     /**
      * 快速排序
      */
     public static void quickSort(int[] array) {
+        quickSort(array, 0, array.length - 1);
+    }
 
+    private static void quickSort(int[] array, int start, int end) {
+        if (start >= end) return;
+        int left = start, right = end;
+        int privot = left;
+        while (left < right) {
+            while (left < right && array[right] > array[privot]) {
+                right--;
+            }
+            while (left < right && array[left] < array[privot]) {
+                left++;
+            }
+            ArrayUtils.swap(array, right, left);
+        }
+        ArrayUtils.swap(array, left, privot);
+        quickSort(array, start, privot - 1);
+        quickSort(array, privot + 1, end);
     }
 
     /**
